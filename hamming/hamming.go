@@ -2,22 +2,18 @@ package hamming
 
 import (
 	"errors"
-	"strings"
 )
 
-// Distance calculates the Hamming distance between two stands of DNA
+// Distance calculates the Hamming distance between two stands of DNA. (Always end comments with periods)
 func Distance(a, b string) (int, error) {
 	var err error
 	var dist int
 
 	if len(a) != len(b) {
-		err = errors.New("Lengths are not the same")
+		return dist, errors.New("lengths are not the same") // It's suggested to not use caps or punctuations in errors to leave breadcrumb effect
 	} else if a != b {
-		arrA := strings.Split(a, "")
-		arrB := strings.Split(b, "")
-
-		for i, value := range arrA {
-			if arrB[i] != value {
+		for i, value := range a {
+			if rune(b[i]) != value {
 				dist++
 			}
 		}
