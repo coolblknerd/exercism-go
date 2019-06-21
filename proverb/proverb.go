@@ -1,15 +1,26 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package proverb should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
 package proverb
+
+import "fmt"
+
+func forWant(want string, lost string) string {
+	return fmt.Sprintf("For want of a %s the %s was lost.", want, lost)
+}
+
+func allFor(want string) string {
+	return fmt.Sprintf("And all for the want of a %s.", want)
+}
 
 // Proverb should have a comment documenting it.
 func Proverb(rhyme []string) []string {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
-	return []string{}
+	proverbs := []string{}
+
+	for i, value := range rhyme {
+		if value == rhyme[len(rhyme)-1] {
+			proverbs = append(proverbs, allFor(rhyme[0]))
+		} else {
+			proverbs = append(proverbs, forWant(value, rhyme[i+1]))
+		}
+	}
+
+	return proverbs
 }
