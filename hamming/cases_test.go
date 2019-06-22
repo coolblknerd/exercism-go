@@ -64,4 +64,10 @@ var testCases = []struct {
 		0,
 		true,
 	},
+	{ // check different code points
+		"aaa",
+		"aÃa",
+		1,
+		false,
+	},
 }
