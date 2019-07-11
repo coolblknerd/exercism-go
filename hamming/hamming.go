@@ -12,8 +12,10 @@ func Distance(a, b string) (int, error) {
 		return dist, errors.New("lengths are not the same") // It's suggested to not use caps or punctuations in errors to leave breadcrumb effect
 	}
 
-	for i, value := range a {
-		if rune(b[i]) != value {
+	ra, rb := []rune(a), []rune(b)
+
+	for i := range ra {
+		if rb[i] != ra[i] {
 			dist++
 		}
 	}
