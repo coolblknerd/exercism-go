@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"unicode"
 )
 
 // Hey should have a comment documenting it.
@@ -31,7 +32,7 @@ func Hey(remark string) string {
 			ans = "Whoa, chill out!"
 		}
 	case "?":
-		if firstWord == strings.ToUpper(firstWord) {
+		if firstWord == strings.ToUpper(firstWord) && unicode.IsLetter(firstElement) {
 			ans = "Calm down, I know what I'm doing!"
 		} else {
 			ans = "Sure."
