@@ -8,9 +8,18 @@ import (
 
 // Hey should have a comment documenting it.
 func Hey(remark string) string {
+	str := strings.Split(remark, " ")
+	firstWord := str[0]
+	firstElement := []rune(firstWord)[0]
 	lastElement := string(remark[len(remark)-1])
+
 	ans := "Whatever."
-	fmt.Println(lastElement)
+	fmt.Println("-------")
+	fmt.Println("Slice of Words: ", str)
+	fmt.Println("First Word: ", firstWord)
+	fmt.Println("First Element", firstElement)
+	fmt.Println("Last Element: ", lastElement)
+	fmt.Println("Length of Sentence: ", len(str))
 
 	switch lastElement {
 	default:
@@ -22,7 +31,7 @@ func Hey(remark string) string {
 			ans = "Whoa, chill out!"
 		}
 	case "?":
-		if remark == strings.ToUpper(remark) && {
+		if firstWord == strings.ToUpper(firstWord) {
 			ans = "Calm down, I know what I'm doing!"
 		} else {
 			ans = "Sure."
