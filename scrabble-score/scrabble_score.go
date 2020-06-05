@@ -2,27 +2,29 @@ package scrabble
 
 import (
 	"strings"
+	"unicode"
 )
 
 // Score receives a word and returns the scrabble score of the word
 func Score(word string) int {
 	var score int
-	letters := strings.Split(word, "")
+	letters := []rune(word)
 	for _, letter := range letters {
-		scrab := strings.ToUpper(letter)
-		if strings.Contains("A, E, I, O, U, L, N, R, S, T", scrab) {
+		scrab := unicode.ToUpper(letter)
+		switch {
+		case strings.Contains("A, E, I, O, U, L, N, R, S, T", string(scrab)):
 			score++
-		} else if strings.Contains("D, G", scrab) {
+		case strings.Contains("D, G", string(scrab)):
 			score = score + 2
-		} else if strings.Contains("B, C, M, P", scrab) {
+		case strings.Contains("B, C, M, P", string(scrab)):
 			score = score + 3
-		} else if strings.Contains("F, H, V, W, Y", scrab) {
+		case strings.Contains("F, H, V, W, Y", string(scrab)):
 			score = score + 4
-		} else if strings.Contains("K", scrab) {
+		case strings.Contains("K", string(scrab)):
 			score = score + 5
-		} else if strings.Contains("J, X", scrab) {
+		case strings.Contains("J, X", string(scrab)):
 			score = score + 8
-		} else if strings.Contains("Q, Z", scrab) {
+		case strings.Contains("Q, Z", string(scrab)):
 			score = score + 10
 		}
 	}
