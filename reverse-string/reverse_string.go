@@ -1,11 +1,8 @@
 package reverse
 
 func Reverse(s string) (r string) {
-	n := len(s)
-	rev := make([]rune, n)
-	for _, v := range s {
-		n--
-		rev[n] = v
+	for _, l := range s {
+		r = string(l) + r
 	}
-	return string(rev[n:])
+	return
 }
