@@ -1,22 +1,18 @@
 package isogram
 
-import (
-	"strings"
-	"unicode"
-)
+import "unicode"
 
 // IsIsogram is a function that determines if word is a isogram
 func IsIsogram(word string) bool {
-	var l []string
+	seen := make(map[rune]bool)
 	for _, r := range word {
-		if strings.ContainsRune(strings.Join(l, ""), unicode.ToLower(r)) {
+		lc := unicode.ToLower(r)
+		if seen[lc] {
 			return false
-		} else if string(r) == "-" || string(r) == " " {
+		} else if !unicode.IsLetter(r) {
 			continue
-		} else {
-			lc := unicode.ToLower(r)
-			l = append(l, string(lc))
 		}
+		seen[lc] = true
 	}
 	return true
 }
