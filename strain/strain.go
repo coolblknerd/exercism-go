@@ -1,27 +1,49 @@
 package strain
 
-// Elements is a public type
-type Elements []interface{}
+type Ints []int
+type Lists [][]int
+type Strings []string
 
-// Keep is a public function
-func (values Elements) Keep(f func(interface{}) bool) Elements {
-	var strain Elements
-	for _, elem := range values {
-		if f(elem) {
+type convert func(int) bool
+type stringConvert func(string) bool
+type listsConvert func(l []int) bool
 
-			strain = append(strain, elem)
+func (i Ints) Keep(fn convert) Ints {
+	var ans Ints
+	for _, value := range i {
+		if fn(value) {
+			ans = append(ans, value)
 		}
 	}
-	return strain
+	return ans
 }
 
-// // Discard is a public function
-// func (nums Ints) Discard(f func(int) bool) Ints {
-// 	var strain Ints
-// 	for _, num := range nums {
-// 		if !f(num) {
-// 			strain = append(strain, num)
-// 		}
-// 	}
-// 	return strain
-// }
+func (i Ints) Discard(fn convert) Ints {
+	var ans Ints
+	for _, value := range i {
+		if !fn(value) {
+			ans = append(ans, value)
+		}
+	}
+	return ans
+}
+
+func (s Strings) Keep(fn stringConvert) Strings {
+	var ans Strings
+	for _, value := range s {
+		if fn(value) {
+			ans = append(ans, value)
+		}
+	}
+	return ans
+}
+
+func (l Lists) Keep(fn listsConvert) Lists {
+	var ans Lists
+	for _, value := range l {
+		if fn(value) {
+			ans = append(ans, value)
+		}
+	}
+	return ans
+}

@@ -6,11 +6,12 @@ import "unicode"
 func IsIsogram(word string) bool {
 	seen := make(map[rune]bool)
 	for _, r := range word {
+		if !unicode.IsLetter(r) {
+			continue
+		}
 		lc := unicode.ToLower(r)
 		if seen[lc] {
 			return false
-		} else if !unicode.IsLetter(r) {
-			continue
 		}
 		seen[lc] = true
 	}
