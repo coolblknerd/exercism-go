@@ -7,11 +7,10 @@ func TestHey(t *testing.T) {
 		actual := Hey(tt.input)
 		if actual != tt.expected {
 			msg := `
-				ALICE (%s): %q
-				BOB: %s
+	ALICE (%s): %q
+	BOB: %s
 
-				Expected Bob to respond: %s
-			`
+	Expected Bob to respond: %s`
 			t.Fatalf(msg, tt.description, tt.input, actual, tt.expected)
 		}
 	}
